@@ -1,7 +1,7 @@
 """Package manager for pandoc extras
 
 See:
-https://github.com/pandoc-extras/package-manager
+https://github.com/pandoc-extras/pandocpm
 """
 
 from setuptools import setup, find_packages
@@ -33,7 +33,7 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/pandoc-extras/package-manager',
+    url='https://github.com/pandoc-extras/pandocpm',
 
     # Author details
     author="Sergio Correia",

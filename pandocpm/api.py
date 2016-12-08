@@ -9,7 +9,7 @@ pandocpm   install CAT NAME --target=XYZ --index_url=XYZ --branch=XYZ --replace
 pandocpm uninstall CAT NAME --target=XYZ
 
 Misc:
-	--verbose
+    --verbose
 
 Not implemented:
 pandoc     upgrade
@@ -61,4 +61,4 @@ def main():
                           verbose=args.verbose)
     else:
         raise Exception("subcmd not supported: " + command)
-        #update_package('debug', 'filter', verbose=True)
+        # update_package('debug', 'filter', verbose=True)

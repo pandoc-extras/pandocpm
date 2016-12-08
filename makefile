@@ -48,8 +48,8 @@ docsAll := $(docsPdf) docs/index.html README.md README.rst README.html # $(docsH
 # all: $(testAll) $(docsAll)
 docs: $(docsAll)
 readme: docs
-test: pytest pep8 pylint
-	coverage html
+test: pep8 pylint # pytest
+	# coverage html
 
 clean:
 	rm -f .coverage README.html # $(testAll)

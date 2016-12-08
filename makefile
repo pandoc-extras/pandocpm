@@ -53,11 +53,11 @@ test: pytest pep8 pylint
 
 clean:
 	rm -f .coverage README.html # $(testAll)
-	rm -rf htmlcov pantable.egg-info
+	rm -rf htmlcov pandocpm.egg-info build dist
 	find . -type f -name "*.py[co]" -delete -or -type d -name "__pycache__" -delete
 Clean:
 	rm -f .coverage README.html $(docsAll) # $(testAll)
-	rm -rf htmlcov pantable.egg-info
+	rm -rf htmlcov pandocpm.egg-info build dist
 	find . -type f -name "*.py[co]" -delete -or -type d -name "__pycache__" -delete
 
 # Making dependancies #################################################################################################################################################################################

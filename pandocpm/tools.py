@@ -7,7 +7,7 @@ import os
 from .utils import (get_index, get_path,
                     get_local_metadata, get_remote_metadata,
                     package_is_installed,
-                    assert_package_is_installed, 
+                    assert_package_is_installed,
                     assert_package_is_not_installed,
                     assert_package_is_available,
                     list_installed_packages,
@@ -20,7 +20,7 @@ def install_package(name, category, branch=None, replace=False,
 
     if branch is None:
         branch = 'default'
-    
+
     # Build index of available packages
     if index is None:
         index = get_index(category, index_url=index_url)
@@ -31,7 +31,8 @@ def install_package(name, category, branch=None, replace=False,
     # Check that the requested package and branch exist in the online index
     assert_package_is_available(name, branch, index, category)
 
-    # Check that the requested package does not exist locally (or that replace is True)
+    # Check that the requested package does not exist locally
+    # (or that replace is True)
     if not replace:
         assert_package_is_not_installed(name, path, category)
 
@@ -74,7 +75,7 @@ def install_package(name, category, branch=None, replace=False,
         print(msg.format(category, name, branch))
 
 
-#def upgrade_package(name, category, path=None, verbose=False):
+# def upgrade_package(name, category, path=None, verbose=False):
 #    index = get_index(category, index_url=index_url)
 #
 #
@@ -84,7 +85,7 @@ def install_package(name, category, branch=None, replace=False,
 #
 #
 #
-#def upgrade_packages(name=None, category=None, path=None, verbose=False):
+# def upgrade_packages(name=None, category=None, path=None, verbose=False):
 #    if name is not None and category is None:
 #        raise Exception("need the category of the package")
 #
@@ -95,9 +96,8 @@ def install_package(name, category, branch=None, replace=False,
 #        upgrade_package(name, category, path, verbose)
 #    else:
 #
-#def install_package(name, category, branch='default', replace=False,
+# def install_package(name, category, branch='default', replace=False,
 #                    index_url=None, target=None, verbose=False):
-
 
 
 def uninstall_package(name, category, target=None, verbose=False):

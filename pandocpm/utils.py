@@ -41,7 +41,7 @@ def _parse_index(raw_yaml):
     new_index = dict()
     for c in index:
         name = c.pop('name')
-        branch_dicts = c.pop('branches', [{'branch':'default'}])
+        branch_dicts = c.pop('branches', [{'branch': 'default'}])
         for branch_dict in branch_dicts:
             branch = branch_dict.pop('branch')
             new_c = c
@@ -65,7 +65,8 @@ def get_remote_metadata(name, url, local=False):
     if url.endswith('.yaml'):
         r = requests.get(url)
         if r.status_code != 200:
-            raise IOError("Cannot download YAML, error {}".format(r.status_code))
+            raise IOError(
+                "Cannot download YAML, error {}".format(r.status_code))
         meta = _parse_metadata(r.text)
     else:
         meta = {'name': name, 'url': url, 'version': '0.0.0'}
@@ -106,6 +107,7 @@ def shell(args, wait=True, msg=None):
         DETACHED_PROCESS = 0x00000008
         proc = Popen(args, creationflags=DETACHED_PROCESS)
 
+
 def run_pandoc(text='', args=None):
     """
     Low level function that calls Pandoc with (optionally)
@@ -120,7 +122,7 @@ def run_pandoc(text='', args=None):
     pandoc_path = which('pandoc')
     if pandoc_path is None or not os.path.exists(pandoc_path):
         raise OSError("Path to pandoc executable does not exists")
-    
+
     proc = Popen([pandoc_path] + args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
     out, err = proc.communicate(input=text.encode('utf-8'))
     exitcode = proc.returncode
@@ -133,7 +135,7 @@ def get_path(target, category, verbose=False, suffix='s'):
     """
     get the path where the filters/templates/etc are installed
     """
-    
+
     if target is None:
         # Copied from panflute.autofilter
         info = run_pandoc(args=['--version']).splitlines()
@@ -172,13 +174,13 @@ def assert_package_is_not_installed(name, path, category):
 
 
 def assert_package_is_available(name, branch, index, category):
-        if not (name, branch) in index:
-            msg = "{} <{}> with branch <{}> not found on index:\n{}"
-            raise KeyError(msg.format(category, name, branch, repr(index.keys())))
+    if not (name, branch) in index:
+        msg = "{} <{}> with branch <{}> not found on index:\n{}"
+        raise KeyError(msg.format(category, name, branch, repr(index.keys())))
 
 
 def download(url, filename):
     r = requests.get(url)
     with open(filename, mode='w', encoding='utf-8') as f:
-        #f.write(r.content)
+        # f.write(r.content)
         f.write(r.text)

@@ -1,3 +1,6 @@
+# rst2html: just for checking the rst output from pandoc is valid
+README.html
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

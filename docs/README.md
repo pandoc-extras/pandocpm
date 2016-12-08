@@ -6,11 +6,9 @@ Manage the install/update/uninstall of Pandoc extras
 
 ## Install
 
-To install pandoc-extras, open the command line and type::
+To install pandoc-extras, open the command line and type:
 
-### Python 3
-
-```
+```bash
 pip install git+git://github.com/pandoc-extras/package-manager.git
 ```
 

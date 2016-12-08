@@ -15,11 +15,11 @@ Manage the install/update/uninstall of Pandoc extras (filters, templates, etc.)
 Install
 -------
 
-To install pandoc-extras, open the command line and type::
+To install pandoc-extras, open the command line and type:
 
-### Python 3
-
-    pip install git+git://github.com/pandoc-extras/package-manager.git
+``` bash
+pip install git+git://github.com/pandoc-extras/package-manager.git
+```
 
 -   Requires Python 3.2 or later.
 -   On windows, the command line (`cmd`) must be run as administrator.

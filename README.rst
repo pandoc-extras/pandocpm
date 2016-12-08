@@ -18,12 +18,9 @@ templates, etc.)
 Install
 -------
 
-To install pandoc-extras, open the command line and type::
+To install pandoc-extras, open the command line and type:
 
-Python 3
-~~~~~~~~
-
-::
+.. code:: bash
 
     pip install git+git://github.com/pandoc-extras/package-manager.git
 

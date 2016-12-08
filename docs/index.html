@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://ickc.github.io/markdown-latex-css/css/common.css">
+  <link rel="stylesheet" href="https://ickc.github.io/markdown-latex-css/fonts/fonts.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC">
+<ul>
+<li><a href="#package-manager"><span class="toc-section-number">1</span> package-manager</a><ul>
+<li><a href="#install"><span class="toc-section-number">1.1</span> Install</a></li>
+<li><a href="#to-uninstall"><span class="toc-section-number">1.2</span> To Uninstall</a></li>
+<li><a href="#dev-install"><span class="toc-section-number">1.3</span> Dev Install</a></li>
+</ul></li>
+</ul>
+</nav>
+<p><a href="https://travis-ci.org/pandoc-extras/pandocpm"><img src="https://travis-ci.org/pandoc-extras/pandocpm.svg?branch=master" alt="Build Status" /></a> <a href="https://github.com/pandoc-extras/pandocpm/releases"><img src="https://img.shields.io/github/tag/pandoc-extras/pandocpm.svg?label=github+release" alt="GitHub Releases" /></a> <a href="https://pypi.python.org/pypi/pandocpm/"><img src="https://img.shields.io/pypi/v/pandocpm.svg" alt="PyPI version" /></a> <a href="https://pypi.python.org/pypi/pandocpm/"><img src="https://img.shields.io/pypi/status/pandocpm.svg" alt="Development Status" /></a> <a href="https://pypi.python.org/pypi/pandocpm/"><img src="https://img.shields.io/pypi/pyversions/pandocpm.svg" alt="Python version" /></a> <!-- [![Downloads](https://img.shields.io/pypi/dm/pandocpm.svg)](https://pypi.python.org/pypi/pandocpm/) --> <img src="https://img.shields.io/pypi/l/pandocpm.svg" alt="License" /></p>
+<h1 id="package-manager"><span class="header-section-number">1</span> package-manager</h1>
+<p>Manage the install/update/uninstall of Pandoc extras (filters, templates, etc.)</p>
+<h2 id="install"><span class="header-section-number">1.1</span> Install</h2>
+<p>To install pandoc-extras, open the command line and type::</p>
+<h3 id="python-3"><span class="header-section-number">1.1.1</span> Python 3</h3>
+<pre><code>pip install git+git://github.com/pandoc-extras/package-manager.git</code></pre>
+<ul>
+<li>Requires Python 3.2 or later.</li>
+<li>On windows, the command line (<code>cmd</code>) must be run as administrator.</li>
+</ul>
+<h2 id="to-uninstall"><span class="header-section-number">1.2</span> To Uninstall</h2>
+<pre><code>pip uninstall pandoc-extras</code></pre>
+<h2 id="dev-install"><span class="header-section-number">1.3</span> Dev Install</h2>
+<p>After cloning the repo and opening the pandoc-extras folder:</p>
+<dl>
+<dt><code>python setup.py install</code></dt>
+<dd>installs the package locally
+</dd>
+<dt><code>python setup.py develop</code></dt>
+<dd>installs locally with a symlink so changes are automatically updated
+</dd>
+</dl>
+</body>
+</html>

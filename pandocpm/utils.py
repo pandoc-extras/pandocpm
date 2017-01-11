@@ -26,7 +26,7 @@ def list_installed_packages(categories=None):
 def get_index(category, suffix='s', index_url=None):
     """
     Get index of available packages
-    
+
     :param category: 'filter', 'template', etc.
     :param suffix: the suffix for the complete name of the category. Default: 's'.
     :param index_url: url to the index. If None, default index location is used. Default: None.
@@ -40,7 +40,7 @@ def get_index(category, suffix='s', index_url=None):
 def _download_index(category, index_url):
     """
     Download the index.
-    
+
     :param category: suffixed category, e.g. 'filters', 'templates'
     :param index_url: url to the index. Default: 'https://raw.githubusercontent.com/pandoc-extras/packages/master/<category>.yaml'
     :return: the content of the index, which is in YAML
@@ -58,7 +58,7 @@ def _parse_index(raw_yaml):
     """
     Parse the content of the index.
     TODO: add test.
-    
+
     :param raw_yaml: index in the original YAML format.
     :return: parsed index as a dict
 
@@ -73,9 +73,9 @@ def _parse_index(raw_yaml):
               url-type: simple|pip
           url: FILTER_URL (optional if url-type is pip)
           url-type: simple|pip (default is simple)
-    
+
     :Example:
-    
+
     >>> raw_yaml = '''- name: pandoc-eqnos
     ...   branches:
     ...     - branch: default

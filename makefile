@@ -40,8 +40,8 @@ pandocArgReadmePypi := $(pandocArgFragment) -s -t rst --reference-location=block
 
 docs := $(wildcard docs/*.md)
 # docsHtml := $(patsubst %.md,%.html,$(docs))
-docsPdf := $(patsubst %.md,%.pdf,$(docs))
-docsAll := $(docsPdf) docs/index.html README.md README.rst README.html # $(docsHtml)
+# docsPdf := $(patsubst %.md,%.pdf,$(docs))
+docsAll := docs/index.html README.md README.rst README.html # $(docsHtml) $(docsPdf)
 
 # Main Targets ########################################################################################################################################################################################
 
@@ -64,8 +64,8 @@ Clean:
 
 # %.native: %.md # $(filter)
 # 	pandoc -t native -o $@ $< # -F $(filter)
-%.pdf: %.md # $(filter)
-	pandoc $(pandocArgStandalone) -o $@ $<
+# %.pdf: %.md # $(filter)
+# 	pandoc $(pandocArgStandalone) -o $@ $<
 %.html: %.md # $(filter)
 	pandoc $(pandocArgHTML) $< -o $@
 

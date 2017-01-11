@@ -17,16 +17,34 @@ import requests
 
 
 def list_installed_packages(categories=None):
+    """
+    TODO
+    """
     pass
 
 
 def get_index(category, suffix='s', index_url=None):
+    """
+    Get index of available packages
+    
+    :param category: 'filter', 'template', etc.
+    :param suffix: the suffix for the complete name of the category. Default: 's'.
+    :param index_url: url to the index. If None, default index location is used. Default: None.
+    :return: parsed index as a dict.
+    """
     raw_yaml = _download_index(category + suffix, index_url)
     index = _parse_index(raw_yaml)
     return index
 
 
 def _download_index(category, index_url):
+    """
+    Download the index.
+    
+    :param category: suffixed category, e.g. 'filters', 'templates'
+    :param index_url: url to the index. Default: 'https://raw.githubusercontent.com/pandoc-extras/packages/master/<category>.yaml'
+    :return: the content of the index, which is in YAML
+    """
     if index_url is None:
         index_url = 'https://raw.githubusercontent.com/pandoc-extras/packages/master/{}.yaml'
     url = index_url.format(category)
@@ -37,6 +55,37 @@ def _download_index(category, index_url):
 
 
 def _parse_index(raw_yaml):
+    """
+    Parse the content of the index.
+    TODO: add test.
+    
+    :param raw_yaml: index in the original YAML format.
+    :return: parsed index as a dict
+
+    Syntax of the index in YAML:
+
+    .. code:: yaml
+
+        - name: FILTER_NAME
+          branches: (optional)
+            branch1:
+              url: BRANCH_URL
+              url-type: simple|pip
+          url: FILTER_URL (optional if url-type is pip)
+          url-type: simple|pip (default is simple)
+    
+    :Example:
+    
+    >>> raw_yaml = '''- name: pandoc-eqnos
+    ...   branches:
+    ...     - branch: default
+    ...       url-type: pip
+    ...     - branch: dev
+    ...       url: git://github.com/tomduck/pandoc-eqnos.git
+    ...       url-type: simple'''
+    >>> _parse_index(raw_yaml)
+    {('pandoc-eqnos', 'dev'): {'url-type': 'simple', 'url': 'git://github.com/tomduck/pandoc-eqnos.git'}, ('pandoc-eqnos', 'default'): {'url-type': 'simple', 'url': 'git://github.com/tomduck/pandoc-eqnos.git'}}
+    """
     index = yaml.load(raw_yaml)
     new_index = dict()
     for c in index:
@@ -133,7 +182,7 @@ def run_pandoc(text='', args=None):
 
 def get_path(target, category, verbose=False, suffix='s'):
     """
-    get the path where the filters/templates/etc are installed
+    Get the path where the filters/templates/etc are installed
     """
 
     if target is None:

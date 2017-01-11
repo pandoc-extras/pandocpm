@@ -17,7 +17,18 @@ from .utils import (get_index, get_path,
 def install_package(name, category, branch=None, replace=False,
                     index_url=None, target=None, verbose=False,
                     index=None):
+    """
+    Main install function when ``pandocpm install`` is used.
 
+    :param name: name of the package
+    :param category: 'filter', 'template', etc.
+    :param branch:
+    :param replace:
+    :param index_url: url to the index. If None, default index location is used. Default: None.
+    :param target:
+    :param verbose: if True, show debugging info. Default: False.
+    :param index: explicitly specifying the index. Note: not used from the cli. Default: None.
+    """
     if branch is None:
         branch = 'default'
 
@@ -25,7 +36,7 @@ def install_package(name, category, branch=None, replace=False,
     if index is None:
         index = get_index(category, index_url=index_url)
 
-    # Find out location where packages get installed
+    # get the path where the filters/templates/etc are installed
     path, target = get_path(target, category, verbose=verbose)
 
     # Check that the requested package and branch exist in the online index
@@ -101,11 +112,18 @@ def install_package(name, category, branch=None, replace=False,
 
 
 def uninstall_package(name, category, target=None, verbose=False):
+    """
+    Main install function when ``pandocpm uninstall`` is used.
+
+    :param name: name of the package
+    :param category: 'filter', 'template', etc.
+    :param target:
+    :param verbose: if True, show debugging info
+    """
     path, target = get_path(target, category, verbose=verbose)
     assert_package_is_installed(name, path, category)
     yaml_fn = os.path.join(path, name + '.yaml')
     meta = get_local_metadata(name, category, target)
-
     if 'uninstall' in meta:
         shell(meta[uninstall])  # might need admin/sudo?
     else:

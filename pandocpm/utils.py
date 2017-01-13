@@ -102,7 +102,7 @@ def _parse_index(raw_yaml):
 
 
 def get_local_metadata(name, category, target):
-    path, target = get_path(target, category)
+    target, path = get_path(target, category)
     yaml_fn = os.path.join(path, name + '.yaml')
     with open(yaml_fn, encoding='utf-8') as f:
         raw_yaml = f.read()
@@ -213,7 +213,7 @@ def get_path(target, category, verbose=False, suffix='s'):
     if verbose:
         print('(pandocpm) data directory:', path)
 
-    return path, target
+    return target, path
 
 
 def package_is_installed(name, path):

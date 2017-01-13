@@ -37,7 +37,7 @@ def install_package(name, category, branch=None, replace=False,
         index = get_index(category, index_url=index_url)
 
     # get the path where the filters/templates/etc are installed
-    path, target = get_path(target, category, verbose=verbose)
+    target, path = get_path(target, category, verbose=verbose)
 
     # Check that the requested package and branch exist in the online index
     assert_package_is_available(name, branch, index, category)
@@ -120,7 +120,7 @@ def uninstall_package(name, category, target=None, verbose=False):
     :param target:
     :param verbose: if True, show debugging info
     """
-    path, target = get_path(target, category, verbose=verbose)
+    target, path = get_path(target, category, verbose=verbose)
     assert_package_is_installed(name, path, category)
     yaml_fn = os.path.join(path, name + '.yaml')
     meta = get_local_metadata(name, category, target)

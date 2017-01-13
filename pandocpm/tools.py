@@ -25,7 +25,7 @@ def install_package(name, category, branch=None, replace=False,
     :param branch:
     :param replace:
     :param index_url: url to the index. If None, default index location is used. Default: None.
-    :param target:
+    :param target: path to the install location of the package, or None if unspecified
     :param verbose: if True, show debugging info. Default: False.
     :param index: explicitly specifying the index. Note: not used from the cli. Default: None.
     """

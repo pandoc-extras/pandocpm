@@ -183,9 +183,17 @@ def run_pandoc(text='', args=None):
 def get_path(target, category, verbose=False, suffix='s'):
     """
     Get the path where the filters/templates/etc are installed
+
+    :param target: path to the pandoc data-dir, or None if unspecified.
+    :param category: 'filter', 'template', etc.
+    :param verbose: if True, show debugging info. Default: False.
+    :param suffix: the suffix for the complete name of the category. Default: 's'.
+    :return: target: if the input ``target`` is None, use the default pandoc data-dir, else same as the input.
+    :return: path: path to the install location of the package. i.e. subfolder of the categories in ``target``.
     """
 
     if target is None:
+        # get default user data directory from ``pandoc --version``
         # Copied from panflute.autofilter
         info = run_pandoc(args=['--version']).splitlines()
         prefix = "Default user data directory: "
@@ -193,8 +201,10 @@ def get_path(target, category, verbose=False, suffix='s'):
         assert len(info) == 1
         target = info[0][len(prefix):]
 
+    # path for the package according to the categories
     path = os.path.join(target, category + suffix)
 
+    # make dir if not exist
     if not os.path.isdir(path):
         if verbose:
             print("(pandocpm) folder does not exist, creating it")

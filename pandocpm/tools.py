@@ -117,7 +117,7 @@ def uninstall_package(name, category, target=None, verbose=False):
 
     :param name: name of the package
     :param category: 'filter', 'template', etc.
-    :param target:
+    :param target: path to the pandoc data-dir, or None if unspecified.
     :param verbose: if True, show debugging info
     """
     target, path = get_path(target, category, verbose=verbose)

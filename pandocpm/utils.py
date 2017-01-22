@@ -102,6 +102,9 @@ def _parse_index(raw_yaml):
 
 
 def get_local_metadata(name, category, target):
+    """Read the content of <name>.yaml in <target>/<category>s
+    and return a parsed metadata
+    """
     target, path = get_path(target, category)
     yaml_fn = os.path.join(path, name + '.yaml')
     with open(yaml_fn, encoding='utf-8') as f:
@@ -123,6 +126,10 @@ def get_remote_metadata(name, url, local=False):
 
 
 def _parse_metadata(raw_yaml):
+    """load the yaml into a python native dict
+    parse the value of ``version`` key according to semantic versioning as a tuple
+    (if invalid, (0,0,0))
+    """
     meta = yaml.load(raw_yaml)
     version = meta.get('version', '0.0.0')
     try:
@@ -217,28 +224,38 @@ def get_path(target, category, verbose=False, suffix='s'):
 
 
 def package_is_installed(name, path):
+    """Check if <name>.yaml exist in path.
+    """
     yaml_fn = os.path.join(path, name + '.yaml')
     return os.path.isfile(yaml_fn)
 
 
 def assert_package_is_installed(name, path, category):
+    """Raise exception if <path>/<name>.yaml already exists.
+    """
     if not package_is_installed(name, path):
         raise Exception("{} {} not installed".format(category, name))
 
 
 def assert_package_is_not_installed(name, path, category):
+    """Check that the requested package does not exist locally
+    """
     if package_is_installed(name, path):
         msg = "{} {} already installed; uninstall or use the '--replace' flag"
         raise Exception(msg.format(category, name))
 
 
 def assert_package_is_available(name, branch, index, category):
+    """Check that the requested package and branch exist in the online index
+    """
     if not (name, branch) in index:
         msg = "{} <{}> with branch <{}> not found on index:\n{}"
         raise KeyError(msg.format(category, name, branch, repr(index.keys())))
 
 
 def download(url, filename):
+    """Download contents of ``url`` to ``filename``.
+    """
     r = requests.get(url)
     with open(filename, mode='w', encoding='utf-8') as f:
         # f.write(r.content)

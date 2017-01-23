@@ -52,16 +52,19 @@ def install_package(name, category, branch=None, replace=False,
         uninstall_package(name, category, target, verbose=verbose)
 
     # Copy the files or perform the install
+    # e.g. {'url-type': 'simple', 'url': 'git://github.com/tomduck/pandoc-eqnos.git'}
     info = index[name, branch]
     url = info['url']
     url_type = info['url-type']
 
+    # this assume .yaml is a sidecar of .py
     if url.endswith('.yaml'):
         yaml_url = url
         python_url = yaml_url[:-5] + '.py'
     yaml_fn = os.path.join(path, name + '.yaml')
     python_fn = os.path.join(path, name + '.py')
 
+    # install by different url_type
     if url_type == 'simple':
         download(yaml_url, yaml_fn)
         meta = get_local_metadata(name, category, target)
@@ -69,15 +72,12 @@ def install_package(name, category, branch=None, replace=False,
             shell(meta[install])
         else:
             download(python_url, python_fn)
-
     elif url_type == 'pip' and not url:
         shell('pip install ' + name)
-
     elif url_type == 'pip':
         # URL *MUST* BE OF THE FORM: git://github.com/jkbr/httpie.git
         cmd = 'pip install git+{}'.format(url)
         shell(cmd)
-
     else:
         raise Exception("unknown URL Type, don't know how to install")
 

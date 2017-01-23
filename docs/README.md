@@ -1,8 +1,26 @@
-# package-manager
+# Description
 
 Manage the install/update/uninstall of Pandoc extras
 (filters, templates, etc.)
 
+## What pandocpm is not
+
+Pandocpm does not replace your usual package manager: `pip`, `cabal`, etc.
+
+In pandocpm, there are 2 kinds of packages: simple, or not simple.
+
+- A simple package means it is a single file, standalone package (e.g. a simple filter written in python that is a single file, a template which by its nature has to be a single file, etc.)
+
+- A non-simple package will be installed by external package managers, e.g. `pip` and `cabal`. pandocpm **do not** help you to install these package manager. It simply runs the neccessary commands to install a particular package. (And of course it won't help you to resolve any dependencies issue either.) Helpful messages will be shown to direct you to install a particular package manager. See more below.
+
+## What is pandocpm then?
+
+It is designed to be a one-stop shop for any pandoc related packages, be it filters, templates, csl, panzer setup, etc. It
+
+1. automates the process of copying these packages, and
+2. provide a shortcut to commands required to install packages managed by other existing package managers.
+
+Moreover, base on the infrastructure created in pandocpm, an auto-gallery will be provided for package discovery, which encourage code-reuse and to build upon one another's workflow.
 
 ## Install
 

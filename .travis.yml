@@ -1,4 +1,3 @@
-# os: linux and sudo: false is assumed, which means it is using container-based Ubuntu 12.04
 language: python
 cache:
   - pip
